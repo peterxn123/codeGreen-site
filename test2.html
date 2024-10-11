@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CodeGreen Hackathon</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f3;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #14452f;
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1521079012801-1c8a2f13aae7?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        header h1 {
+            z-index: 1;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            z-index: 1;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        header button {
+            z-index: 1;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #14452f;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        header button:hover {
+            background-color: #0F5132;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0a3d31;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Schedule Table */
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #14452f;
+            color: white;
+        }
+
+        /* Sponsors Section */
+        #sponsors {
+            background-color: #f4f7f6;
+        }
+
+        /* Donation Section */
+        #donation {
+            text-align: center;
+        }
+
+        iframe {
+            margin-top: 20px;
+            border-radius: 15px;
+            border: none;
+            width: 100%;
+            max-width: 750px;
+            height: 900px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* FAQ Section */
+        #faq {
+            background-color: #f9fafb;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .faq-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #388e3c;
+        }
+
+        .faq-item p {
+            text-align: center;
+        }
+
+        /* Register Interest Section */
+        #register {
+            background: transparent;
+            color: #14452f;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #14452f;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #0a3d31;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            header button {
+                font-size: 0.9rem;
+            }
+        }
+
+        header {
+            background-image: url("https://wallpapercave.com/wp/wp7528738.jpg") ;
+            background-repeat: no-repeat;
+        }
+
+        footer p {
+            max-width: 1800px;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class=" shadow-lg fixed w-full z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between">
+            <div class="text-white text-2xl font-bold">codeGreen</div>
+            <div class="space-x-4">
+                <a href="#about" class="text-white hover:underline">About</a>
+                <a href="#schedule" class="text-white hover:underline">Schedule</a>
+                <a href="#sponsors" class="text-white hover:underline">Sponsors</a>
+                <a href="https://hcb.hackclub.com/donations/start/codegreen" target="_blank" class="text-white hover:underline">Make a Donation</a>
+                <a href="#faq" class="text-white hover:underline">FAQ</a>
+                <a href="#register" class="text-white hover:underline">Register Interest</a>
+                <a href="#contact" class="text-white hover:underline">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <h1>Welcome to CodeGreen</h1>
+        <p>A hackathon by teenagers, for teenagers. Innovating towards the UK's net zero goals.</p>
+        <button onclick="location.href='#register'">Register Now</button>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About codeGreen</h2>
+        <p>
+            codeGreen is a beginner-friendly hackathon for secondary schoolers where coders and artists of all kinds will spend 12 hours together to build a project based on our theme - tech that will help us in our nation's target of reaching net zero. 
+            Our event works to encourage participants (could be you!) to improve their coding skills and collaborate with people with all kinds of talents.
+        </p>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule">
+        <h2>Schedule</h2>
+        <table class="w-full">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>8:00 AM</td>
+                    <td>Event Check-in</td>
+                </tr>
+                <tr>
+                    <td>8:30 AM</td>
+                    <td>Forming Teams</td>
+                </tr>
+                <tr>
+                    <td>8:45 AM</td>
+                    <td>Opening Ceremony</td>
+                </tr>
+                <tr>
+                    <td>8:50 AM</td>
+                    <td>Keynote Speaker</td>
+                </tr>
+                <tr>
+                    <td>9:30 AM</td>
+                    <td>Hacking Begins!</td>
+                </tr>
+                <tr>
+                    <td>10:00 AM</td>
+                    <td>Workshops</td>
+                </tr>
+                <tr>
+                    <td>12:15 PM</td>
+                    <td>Lunch</td>
+                </tr>
+                <tr>
+                    <td>5:00 PM</td>
+                    <td>Pre-dinner</td>
+                </tr>
+                <tr>
+                    <td>6:20 PM</td>
+                    <td>Hacking Ends</td>
+                </tr>
+                <tr>
+                    <td>6:30 PM</td>
+                    <td>Project Pitch + Judging</td>
+                </tr>
+                <tr>
+                    <td>8:00 PM</td>
+                    <td>Closing Ceremony</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section id="sponsors">
+        <h2>Sponsors</h2>
+        <p>We are currently looking for sponsors to support codeGreen. Contact us to become a sponsor!</p>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation">
+        <h2>Make a Donation</h2>
+        <iframe src="https://hcb.hackclub.com/donations/start/codegreen" style="margin: 20px auto;"></iframe>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>Who can participate in CodeGreen?</h3>
+            <p>Anyone aged 18 and under can participate! It's completely free.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do I need to have a team?</h3>
+            <p>No, you’ll meet new people and form teams during the hackathon itself.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is there a registration fee?</h3>
+            <p>No, participation is completely free!</p>
+        </div>
+    </section>
+
+    <!-- Register Interest Section -->
+    <section id="register">
+        <h2>Register Your Interest</h2>
+        Coming soon...
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us at: <a href="mailto:example@example.com">cool@test.com</a>.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 CodeGreen. All rights reserved.      codeGreen is fiscally sponsored by The Hack Foundation (d.b.a. Hack Club), a 501(c)(3) nonprofit (EIN: 81-2908499).</p>
+        
+
+</body>
+</html>
