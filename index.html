@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGreen Hackathon</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --green-accent: #4ade80;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --text-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+        scroll-behavior: smooth;
+        }
+
+        p {
+            font-size: 25px;
+        }
+
+        /* Innovative Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+
+    
+
+       
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 15vw, 8rem);
+            line-height: 0.9;
+            background: linear-gradient(45deg, var(--green-accent), #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+            transform: skew(-5deg);
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        @keyframes fadeUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Bold Section Styling */
+        section:not(.hero) {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        section:nth-child(odd)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(74, 222, 128, 0.1), transparent);
+            clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Dynamic Headings */
+        h2 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: var(--green-accent);
+            margin-bottom: 3rem;
+            transform: skew(-5deg);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--green-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: expandWidth 0.5s forwards;
+        }
+
+        @keyframes expandWidth {
+            to { transform: scaleX(1); }
+        }
+
+        
+
+        /* Dynamic Sponsor Cards */
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            perspective: 1000px;
+        }
+
+        .sponsor-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 2rem;
+            text-align: center;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+        }
+
+        .sponsor-card:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        /* Bold CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--green-accent);
+            color: var(--darker-bg);
+            padding: 1.5rem 3rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+            transform: skew(-5deg);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(100%);
+            transition: transform 0.5s;
+        }
+
+        /* Dynamic Forms */
+        .contact-form {
+            display: grid;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            transform: rotate(-1deg);
+        }
+
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(74, 222, 128, 0.2);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            transform: rotate(1deg);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--green-accent);
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.5s forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .schedule-grid, .contact-form {
+                transform: none;
+            }
+
+            .schedule-item, input, textarea {
+                transform: none;
+            }
+
+            section:not(.hero) {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(74, 222, 128, 0.2);
+            z-index: 1000;
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: var(--green-accent);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .donation-button {
+            margin-top: 48px;
+        }
+
+        footer {
+            align-items: center;
+            padding: 1rem;
+            background: linear-gradient(0deg, rgba(74, 222, 128, 0.1), transparent);
+            margin-top: 3rem;
+            text-align: center;
+            color: darkslategray;
+            font-size: 20px;
+        }
+        
+        .fiscal {
+            font-size: 18px;
+        }
+
+        /* Innovative Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(0deg, #0f172a, #0f172a, #065f46, #064e3b);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Remove the old rotating animation */
+        .hero::before {
+            content: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        /* Optional: Add a subtle overlay to improve text readability */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(2, 6, 23, 0.3);
+            pointer-events: none;
+        }
+
+        
+        /* Option 1: Syne + Cabinet Grotesk */
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+        @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,600,700&display=swap');
+
+        :root {
+            --option1-heading: 'Syne', sans-serif;
+            --option1-body: 'Cabinet Grotesk', sans-serif;
+        }
+
+        /* Base styles for Option 1 */
+        .heading-style-1 {
+            font-family: var(--option1-heading);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        /* Updated table styles */
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid darkslategray;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        td {
+            border-top: 1px solid darkslategray;
+            background: transparent
+        }
+
+        th {
+            background-color: #4ade80;
+            color: #0f172a;
+        }
+
+
+    </style>
+</head>
+<body>
+
+ 
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="heading-style-1">CodeGreen</h1>
+            <p>A hackathon by teenagers, for teenagers. Innovating towards the UK's net zero goals.</p>
+            <a href="#register" class="cta-button">Join the Movement</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="content" data-aos="fade-up">
+            <h2>What is codeGreen?</h2>
+            <p>codeGreen is a beginner-friendly hackathon for secondary schoolers where coders of all kinds will spend 12 hours together to build a project based on our theme - tech that will help us in our nation's target of reaching net zero. Our event works to encourage participants (could be you!) to improve their coding skills and collaborate with people with all kinds of talents.</p>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <div class="content" data-aos="fade-up">
+            <h2>Schedule</h2>
+            <div class="schedule-item">
+                    <div class="table-container">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Event</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>8:00 AM</td>
+                                    <td>Event Check-in</td>
+                                </tr>
+                                <tr>
+                                    <td>8:30 AM</td>
+                                    <td>Forming Teams</td>
+                                </tr>
+                                <tr>
+                                    <td>8:45 AM</td>
+                                    <td>Opening Ceremony</td>
+                                </tr>
+                                <tr>
+                                    <td>8:50 AM</td>
+                                    <td>Keynote Speaker</td>
+                                </tr>
+                                <tr>
+                                    <td>9:30 AM</td>
+                                    <td>Hacking Begins!</td>
+                                </tr>
+                                <tr>
+                                    <td>10:00 AM</td>
+                                    <td>Workshops</td>
+                                </tr>
+                                <tr>
+                                    <td>12:15 PM</td>
+                                    <td>Lunch</td>
+                                </tr>
+                                <tr>
+                                    <td>5:00 PM</td>
+                                    <td>Dinner</td>
+                                </tr>
+                                <tr>
+                                    <td>6:20 PM</td>
+                                    <td>Hacking Ends</td>
+                                </tr>
+                                <tr>
+                                    <td>6:30 PM</td>
+                                    <td>Project Pitch + Judging</td>
+                                </tr>
+                                <tr>
+                                    <td>8:00 PM</td>
+                                    <td>Closing Ceremony</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsors">
+        <div class="content" data-aos="fade-up">
+            <h2>Our Generous Sponsors</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-card">
+                   <p>We are currently looking for sponsors to support codeGreen. Contact us to become a sponsor!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate">
+        <div class="content" data-aos="fade-up">
+            <h2>Support Our Mission</h2>
+            <p>Help us make CodeGreen bigger and better! Your donation supports future innovators and sustainable solutions.</p>
+            <a href="https://hcb.hackclub.com/donations/start/codegreen"  target="_blank"><button class="cta-button donation-button" href="https://hcb.hackclub.com/donations/start/codegreen">Make a Donation</button></a> 
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="content" data-aos="fade-up">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <h3>Who can participate?</h3>
+                <p>Anyone 18 or under passionate about technology, regardless of experience level!</p>
+            </div>
+            <div class="faq-item">
+                <h3>What should I bring?</h3>
+                <p>Your laptop, charger, and enthusiasm! We'll provide food, drinks, and workspace.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is there a participation fee?</h3>
+                <p>The event is completely free for all participants.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="register">
+        <div class="content" data-aos="fade-up">
+            <h2>A registration form will be available soon.</h2>
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress-bar');
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = window.scrollY;
+            
+            scrollProgress.style.width = `${(scrolled / scrollable) * 100}%`;
+        });
+
+        
+    </script>
+</body>
+<footer>
+    <p class="fiscal">codeGreen is fiscally sponsored by The Hack Foundation (d.b.a. Hack Club), a 501(c)(3) nonprofit (EIN: 81-2908499).</p>
+</footer>
+</html>
