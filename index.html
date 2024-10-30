@@ -377,6 +377,25 @@
             background-color: #4ade80;
             color: #0f172a;
         }
+        
+        /*Hero section - stop cutoff on mobile*/
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+
+            .hero p {
+                font-size: clamp(1rem, 3vw, 1.5rem);
+            }
+        }
 
 
     </style>
